@@ -38,8 +38,8 @@
                     </a>
                 </li>
                 
-                <li class="{{ request()->is('admin/orders*') ? 'active' : '' }}">
-                    <a href="">
+                <li class="{{ Route::currentRouteNamed('admin.orders.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders.index') }}">
                         <i class="fas fa-shopping-cart"></i>
                         <span>Đơn hàng</span>
                     </a>
