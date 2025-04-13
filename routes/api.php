@@ -13,7 +13,6 @@ Route::group(['middleware' => CheckApiSecretKey::class], function () {
     // Routes cho Categories
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index']);
-        Route::get('/{slug}', [CategoryController::class, 'show']);
         Route::get('/{slug}/products', [CategoryController::class, 'products']);
     });
 

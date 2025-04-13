@@ -32,31 +32,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Lấy thông tin chi tiết của một danh mục
-     *
-     * @param string $slug
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show($slug)
-    {
-        try {
-            $category = Category::where('slug', $slug)
-                ->select('id', 'name', 'slug', 'sort_order')
-                ->firstOrFail();
-            
-            return response()->json([
-                'success' => true,
-                'data' => $category
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Không tìm thấy danh mục'
-            ], 404);
-        }
-    }
-
-    /**
      * Lấy danh sách sản phẩm theo danh mục
      *
      * @param string $slug
@@ -77,6 +52,8 @@ class CategoryController extends Controller
                 ->map(function($product) {
                     $product->min_price = $product->min_price;
                     $product->min_discounted_price = $product->min_discounted_price;
+                    $product->image = $product->image ? asset('storage/' . $product->image) : null;
+                    $product->category_name = $product->category->name;
                     return $product;
                 });
             

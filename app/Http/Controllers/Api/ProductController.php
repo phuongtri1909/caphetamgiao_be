@@ -220,22 +220,59 @@ class ProductController extends Controller
     public function featured()
     {
         try {
+            // Số lượng sản phẩm cần trả về
+            $totalProductsNeeded = 10;
+
+            // Lấy sản phẩm nổi bật trước
             $featuredProducts = Product::where('is_active', true)
                 ->where('is_featured', true)
                 ->with('category:id,name,slug')
-                ->select('id', 'category_id', 'name', 'slug', 'image')
-                ->limit(8)
-                ->get()
-                ->map(function ($product) {
+                ->select('id', 'category_id', 'name', 'slug', 'image','created_at','updated_at','description','highlight','is_featured')
+                ->get();
+
+            // Chuyển đổi dữ liệu để thêm các trường cần thiết
+            $featuredProducts->transform(function ($product) {
+                $product->min_price = $product->min_price;
+                $product->min_discounted_price = $product->min_discounted_price;
+                $product->average_rating = $product->average_rating;
+                return $product;
+            });
+
+            // Nếu chưa đủ số lượng sản phẩm yêu cầu, thêm sản phẩm mới nhất
+            if ($featuredProducts->count() < $totalProductsNeeded) {
+                // Lấy ID của các sản phẩm nổi bật đã có
+                $existingIds = $featuredProducts->pluck('id')->toArray();
+
+                // Số lượng sản phẩm cần bổ sung thêm
+                $additionalNeeded = $totalProductsNeeded - $featuredProducts->count();
+
+                // Lấy thêm sản phẩm mới nhất (không trùng với các sản phẩm đã lấy)
+                $newProducts = Product::where('is_active', true)
+                    ->whereNotIn('id', $existingIds)
+                    ->with('category:id,name,slug')
+                    ->select('id', 'category_id', 'name', 'slug', 'image','created_at','updated_at','description','highlight','is_featured')
+                    ->latest()
+                    ->limit($additionalNeeded)
+                    ->get();
+
+                // Chuyển đổi dữ liệu các sản phẩm mới
+                $newProducts->transform(function ($product) {
                     $product->min_price = $product->min_price;
                     $product->min_discounted_price = $product->min_discounted_price;
                     $product->average_rating = $product->average_rating;
                     return $product;
                 });
 
+                // Gộp hai danh sách sản phẩm lại
+                $featuredProducts = $featuredProducts->concat($newProducts);
+            } else if ($featuredProducts->count() > $totalProductsNeeded) {
+                // Nếu có quá nhiều sản phẩm nổi bật, chỉ lấy số lượng cần thiết
+                $featuredProducts = $featuredProducts->take($totalProductsNeeded);
+            }
+
             return response()->json([
                 'success' => true,
-                'data' => $featuredProducts
+                'data' => ProductResource::collection($featuredProducts)
             ]);
         } catch (\Exception $e) {
             return response()->json([

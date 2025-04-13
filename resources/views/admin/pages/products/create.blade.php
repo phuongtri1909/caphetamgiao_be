@@ -252,10 +252,10 @@
                                         <input type="file" name="image" id="main-image-upload"
                                             class="image-upload-input" accept="image/*">
                                     </div>
-                                    <div class="form-hint">
+                                    {{-- <div class="form-hint">
                                         <i class="fas fa-info-circle"></i>
                                         <span>Kích thước đề xuất: 800x800px, tối đa 2MB.</span>
-                                    </div>
+                                    </div> --}}
                                     <div class="error-message" id="error-image">
                                         @error('image')
                                             {{ $message }}
@@ -276,7 +276,7 @@
                                     </div>
                                     <div class="form-hint">
                                         <i class="fas fa-info-circle"></i>
-                                        <span>Thêm tối đa 5 ảnh, mỗi ảnh tối đa 2MB.</span>
+                                        <span>Thêm tối đa 5 ảnh.</span>
                                     </div>
                                     <div class="error-message" id="error-additional_images">
                                         @error('additional_images')

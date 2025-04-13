@@ -73,7 +73,7 @@ class ProductController extends Controller
             'highlight.*' => 'nullable|string|max:255',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
-            'image' => 'required|image|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
             'weights' => 'required|array|min:1',
             'weights.*.weight' => 'required|string|max:50',
             'weights.*.sku' => 'required|string|max:50|unique:product_weights',
@@ -82,7 +82,7 @@ class ProductController extends Controller
             'weights.*.is_default' => 'boolean',
             'weights.*.is_active' => 'boolean',
             'additional_images' => 'nullable|array',
-            'additional_images.*' => 'image|max:2048',
+            'additional_images.*' => 'image|mimes:jpeg,png,jpg',
         ], [
             'name.required' => 'Tên sản phẩm không được để trống',
             'name.unique' => 'Tên sản phẩm đã tồn tại',
@@ -91,7 +91,7 @@ class ProductController extends Controller
             'description.max' => 'Mô tả sản phẩm không được vượt quá 2000 ký tự',
             'image.required' => 'Hình ảnh sản phẩm không được để trống',
             'image.image' => 'File phải là hình ảnh',
-            'image.max' => 'Kích thước hình ảnh không được vượt quá 2MB',
+            'image.mimes' => 'Hình ảnh phải có định dạng jpeg, png hoặc jpg',
             'weights.required' => 'Sản phẩm cần có ít nhất một quy cách',
             'weights.min' => 'Sản phẩm cần có ít nhất một quy cách',
             'weights.*.weight.required' => 'Quy cách không được để trống',
@@ -105,7 +105,7 @@ class ProductController extends Controller
             'weights.*.discount_percent.min' => 'Phần trăm giảm giá không được nhỏ hơn 0',
             'weights.*.discount_percent.max' => 'Phần trăm giảm giá không được lớn hơn 100',
             'additional_images.*.image' => 'File phải là hình ảnh',
-            'additional_images.*.max' => 'Kích thước hình ảnh không được vượt quá 2MB',
+            'additional_images.*.mimes' => 'Hình ảnh phải có định dạng jpeg, png hoặc jpg',
         ]);
 
         try {
@@ -126,7 +126,7 @@ class ProductController extends Controller
 
             // Xử lý và lưu ảnh chính
             if ($request->hasFile('image')) {
-                $imagePaths['main'] = ImageHelper::optimizeAndSave($request->file('image'), 'products');
+                $imagePaths['main'] = ImageHelper::optimizeAndSave($request->file('image'), 'images/products');
                 $validated['image'] = $imagePaths['main'];
             }
 
@@ -230,7 +230,7 @@ class ProductController extends Controller
             'highlight.*' => 'nullable|string|max:255',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'weights' => 'required|array|min:1',
             'weights.*.id' => 'nullable|exists:product_weights,id',
             'weights.*.weight' => 'required|string|max:50',
@@ -239,7 +239,7 @@ class ProductController extends Controller
             'weights.*.is_default' => 'boolean',
             'weights.*.is_active' => 'boolean',
             'additional_images' => 'nullable|array',
-            'additional_images.*' => 'image|max:2048',
+            'additional_images.*' => 'image|mimes:jpeg,png,jpg',
             'delete_images' => 'nullable|array',
             'delete_images.*' => 'exists:product_images,id',
         ];
@@ -275,7 +275,7 @@ class ProductController extends Controller
             'description.required' => 'Mô tả sản phẩm không được để trống',
             'description.max' => 'Mô tả sản phẩm không được vượt quá 2000 ký tự',
             'image.image' => 'File phải là hình ảnh',
-            'image.max' => 'Kích thước hình ảnh không được vượt quá 2MB',
+            'image.mimes' => 'Hình ảnh phải có định dạng jpeg, png hoặc jpg',
             'weights.required' => 'Sản phẩm cần có ít nhất một quy cách',
             'weights.min' => 'Sản phẩm cần có ít nhất một quy cách',
             'weights.*.weight.required' => 'Quy cách không được để trống',
@@ -289,7 +289,7 @@ class ProductController extends Controller
             'weights.*.discount_percent.min' => 'Phần trăm giảm giá không được nhỏ hơn 0',
             'weights.*.discount_percent.max' => 'Phần trăm giảm giá không được lớn hơn 100',
             'additional_images.*.image' => 'File phải là hình ảnh',
-            'additional_images.*.max' => 'Kích thước hình ảnh không được vượt quá 2MB',
+            'additional_images.*.mimes' => 'Hình ảnh phải có định dạng jpeg, png hoặc jpg',
         ];
 
         $validated = $request->validate($rules, $messages);
@@ -392,7 +392,7 @@ class ProductController extends Controller
             if ($request->hasFile('additional_images')) {
                 $maxSortOrder = $product->images()->max('sort_order') ?? 0;
                 foreach ($request->file('additional_images') as $index => $image) {
-                    $additionalImagePath = ImageHelper::optimizeAndSave($image, 'products', 800);
+                    $additionalImagePath = ImageHelper::optimizeAndSave($image, 'images/products', 800);
                     $newImagePaths['additional_' . $index] = $additionalImagePath;
 
                     $product->images()->create([
