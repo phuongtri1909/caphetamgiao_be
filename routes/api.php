@@ -6,6 +6,7 @@ use App\Http\Middleware\CheckApiSecretKey;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\ShippingController;
 use App\Http\Controllers\Api\ProvincesController;
 
@@ -31,6 +32,14 @@ Route::group(['middleware' => CheckApiSecretKey::class], function () {
     Route::get('/provinces', [ProvincesController::class, 'allProvinces']);
     Route::get('/provinces/{provinceCode}/districts', [ProvincesController::class, 'districts']);
     Route::get('/provinces/{districtCode}/wards', [ProvincesController::class, 'wards']);
+
+    Route::prefix('news')->group(function () {
+        Route::get('/', [NewsController::class, 'index']);
+        Route::get('/featured',[NewsController::class, 'featured']);
+        Route::get('/latest', [NewsController::class, 'latest']);
+        Route::get('/search', [NewsController::class, 'search']);
+        Route::get('/{slug}', [NewsController::class, 'show']);
+    });
 
     Route::get('/ping', function () {
         return response()->json(['message' => 'pong']);

@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrderController;
 
 
@@ -35,6 +36,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
         Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.update-status');
+
+        Route::resource('news', NewsController::class)->except(['show']);
+
+        Route::post('/upload-image', [NewsController::class, 'uploadImage'])->name('news.upload.image');
+
+        
     });
 
     Route::group(['middleware' => 'guest'], function () {

@@ -31,6 +31,14 @@
                     </a>
                 </li>
 
+                <li class="{{ Route::currentRouteNamed('admin.news.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.news.index') }}">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <span>Tin tức</span>
+                    </a>
+                </li>
+
+
                 <li class="{{ Route::currentRouteNamed('admin.reviews.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.reviews.index') }}">
                         <i class="fa-regular fa-star"></i>

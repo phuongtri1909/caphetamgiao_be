@@ -47,7 +47,7 @@
     
     <!-- Global Alerts -->
     @include('admin.components.alert', ['alertType' => 'toast'])
-    
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <!-- Page specific JS -->
     @stack('scripts')
 </body>

@@ -1524,3 +1524,152 @@ body {
     color: #333;
 }
 /* Review form styles - End */
+
+/* News styles - Begin */
+.thumbnail {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.news-title-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.news-date {
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-active {
+    background-color: #e3fcef;
+    color: #00875a;
+}
+
+.status-inactive {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+/* News metadata badges */
+.news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.news-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 30px;
+    font-size: 13px;
+    background: #f8f9fa;
+    color: #666;
+}
+
+.news-badge i {
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.news-badge.slug {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.news-badge.active {
+    background-color: #e3fcef;
+    color: #00875a;
+}
+
+.news-badge.inactive {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+.news-badge.created {
+    background-color: #fff8e1;
+    color: #ff8f00;
+}
+
+/* News image upload styles - these extend the existing image upload styles */
+.news-image-upload-container {
+    width: 250px; /* Giảm kích thước từ 100% xuống 250px */
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+.news-image-preview {
+    height: 150px; /* Giảm chiều cao từ 200px xuống 150px */
+    background-position: center;
+    background-size: contain; /* Thay đổi từ cover sang contain để không cắt ảnh */
+    background-repeat: no-repeat;
+    transition: all 0.3s;
+}
+
+.news-image-preview.has-image {
+    background-size: cover; /* Khi có ảnh thì dùng cover để hiển thị đầy đủ */
+}
+
+.news-image-preview:hover {
+    background-size: contain; /* Khi hover thì hiển thị đầy đủ ảnh */
+}
+
+/* Thêm nút xóa ảnh khi đã có ảnh */
+.image-preview .remove-image-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc3545;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.image-preview:hover .remove-image-btn {
+    opacity: 1;
+}
+
+.featured-badge {
+    font-size: 18px;
+    display: inline-block;
+}
+.featured-badge .fa-star {
+    color: #ffcc00;
+}
+.normal-badge {
+    font-size: 18px;
+    display: inline-block;
+    opacity: 0.5;
+}
+.news-badge.featured {
+    background-color: #ffcc00;
+    color: #333;
+}
+/* News styles - End */
