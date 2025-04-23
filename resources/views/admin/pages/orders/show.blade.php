@@ -180,14 +180,18 @@
                                 <tr>
                                     <td class="product-col">
                                         <div class="product-info">
-                                            <img src="{{ asset('storage/' . $order->product->image) }}" alt="{{ $order->product->name }}" class="product-image">
-                                            <span class="product-name">{{ $order->product->name }}</span>
+                                            @if($order->product)
+                                                <img src="{{ asset('storage/' . $order->product->image) }}" alt="{{ $order->product->name }}" class="product-image">
+                                                <span class="product-name">{{ $order->product->name }}</span>
+                                            @else
+                                                <span class="product-name product-not-exist">Sản phẩm không tồn tại</span>
+                                            @endif
                                         </div>
                                     </td>
-                                    <td>{{ $order->productWeight->weight }}</td>
-                                    <td class="price-col">{{ number_format($order->productWeight->discounted_price) }} ₫</td>
+                                    <td>{{ $order->productWeight ? $order->productWeight->weight : 'N/A' }}</td>
+                                    <td class="price-col">{{ $order->productWeight ? number_format($order->productWeight->discounted_price) : number_format($order->price) }} ₫</td>
                                     <td class="qty-col">{{ $order->quantity }}</td>
-                                    <td class="total-col">{{ number_format($order->productWeight->discounted_price * $order->quantity) }} ₫</td>
+                                    <td class="total-col">{{ $order->productWeight ? number_format($order->productWeight->discounted_price * $order->quantity) : number_format($order->price * $order->quantity) }} ₫</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -537,6 +541,15 @@
             min-width: 100%;
             margin-bottom: 4px;
         }
+    }
+
+    .product-not-exist {
+        color: #e53935;
+        font-style: italic;
+        background-color: #ffebee;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 13px;
     }
 </style>
 @endpush

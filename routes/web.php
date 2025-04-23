@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+        Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
         Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.update-status');
 
         Route::resource('news', NewsController::class)->except(['show']);

@@ -63,6 +63,14 @@ class OrderController extends Controller
         return view('admin.pages.orders.show', compact('order'));
     }
 
+    public function destroy(Order $order)
+    {
+        // Xóa đơn hàng
+        $order->delete();
+
+        return redirect()->route('admin.orders.index')->with('success', 'Đơn hàng đã được xóa thành công.');
+    }
+
     public function updateStatus(Request $request, Order $order)
     {
         $request->validate([

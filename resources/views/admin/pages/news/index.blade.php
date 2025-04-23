@@ -12,9 +12,6 @@
         </ol>
     </div>
 
-    <!-- Alert Component -->
-    @include('admin.components.alert')
-
     <div class="content-card">
         <div class="card-top">
             <div class="card-title">
