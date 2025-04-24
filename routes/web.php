@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\FranchiseContactController;
 
@@ -52,6 +53,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/franchise-contacts/{franchiseContact}', [FranchiseContactController::class, 'show'])->name('franchise-contacts.show');
         Route::delete('/franchise-contacts/{franchiseContact}', [FranchiseContactController::class, 'destroy'])->name('franchise-contacts.destroy');
         Route::patch('/franchise-contacts/{franchiseContact}/status', [FranchiseContactController::class, 'updateStatus'])->name('franchise-contacts.update-status');
+
+        Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+        Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
+        Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+        Route::patch('/contacts/{contact}/status', [ContactController::class, 'updateStatus'])->name('contacts.update-status');
     });
 
     Route::group(['middleware' => 'guest'], function () {

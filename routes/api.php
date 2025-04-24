@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\ShippingController;
 use App\Http\Controllers\Api\FranchiseController;
 use App\Http\Controllers\Api\ProvincesController;
@@ -48,6 +49,8 @@ Route::group(['middleware' => CheckApiSecretKey::class], function () {
     });
 
     Route::post('franchises-contact', [FranchiseController::class, 'FranchiseContact'])->name('franchises.contact');
+
+    Route::post('contact', [ContactController::class, 'Contact'])->name('contact');
 
     Route::get('/ping', function () {
         return response()->json(['message' => 'pong']);

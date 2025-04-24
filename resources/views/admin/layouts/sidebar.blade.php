@@ -52,6 +52,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Route::currentRouteNamed('admin.contacts.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.contacts.index') }}">
+                        <i class="fa-regular fa-id-badge"></i>
+                        <span>liên hệ</span>
+                    </a>
+                </li>
+
 
                 <li class="{{ Route::currentRouteNamed('admin.reviews.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.reviews.index') }}">
