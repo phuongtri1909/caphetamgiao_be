@@ -14,15 +14,16 @@ use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\FranchiseContactController;
 
 
-Route::get('/clear-cache', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('view:clear');
-    Artisan::call('route:clear');
-    return 'Cache cleared';
-})->name('clear.cache');
+
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/clear-cache', function () {
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+        Artisan::call('route:clear');
+        return 'Cache cleared';
+    })->name('clear.cache');
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/', function () {
             return view('admin.pages.dashboard');
