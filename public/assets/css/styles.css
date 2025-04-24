@@ -2011,6 +2011,7 @@ body {
 }
 
 .action-icon.view-icon {
+    
     background-color: var(--primary-color);
 }
 
