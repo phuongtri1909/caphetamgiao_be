@@ -96,7 +96,7 @@ class NewsController extends Controller
                     $query->where('is_featured', $news->is_featured)
                           ->orWhere('is_featured', true);
                 })
-                ->select('id', 'title', 'slug', 'avatar', 'created_at', 'thumbnail')
+                ->select('id', 'title', 'slug', 'avatar', 'content', 'created_at', 'is_featured', 'thumbnail')
                 ->latest()
                 ->limit(4)
                 ->get();
@@ -150,7 +150,7 @@ class NewsController extends Controller
             // Lấy bài viết nổi bật
             $featuredNews = News::where('is_active', true)
                 ->where('is_featured', true)
-                ->select('id', 'title', 'slug', 'avatar', 'created_at', 'thumbnail')
+                ->select('id', 'title', 'slug', 'avatar', 'content', 'created_at', 'is_featured', 'thumbnail')
                 ->latest()
                 ->paginate($perPage);
                 
@@ -211,7 +211,7 @@ class NewsController extends Controller
                     $q->where('title', 'like', '%' . $query . '%')
                       ->orWhere('content', 'like', '%' . $query . '%');
                 })
-                ->select('id', 'title', 'slug', 'avatar', 'created_at', 'thumbnail')
+                ->select('id', 'title', 'slug', 'avatar', 'content', 'created_at', 'is_featured', 'thumbnail')
                 ->latest()
                 ->paginate($perPage);
                 
@@ -260,7 +260,7 @@ class NewsController extends Controller
             $limit = min(max((int)$request->input('limit', 5), 1), 20);
 
             $latestNews = News::where('is_active', true)
-                ->select('id', 'title', 'slug', 'avatar', 'created_at', 'thumbnail')
+                ->select('id', 'title', 'slug', 'avatar', 'content', 'created_at', 'is_featured', 'thumbnail')
                 ->latest()
                 ->limit($limit)
                 ->get();

@@ -38,6 +38,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Route::currentRouteNamed('admin.franchise.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.franchise.index') }}">
+                        <i class="fa-solid fa-box-open"></i>
+                        <span>Nhượng quyền</span>
+                    </a>
+                </li>
+
 
                 <li class="{{ Route::currentRouteNamed('admin.reviews.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.reviews.index') }}">

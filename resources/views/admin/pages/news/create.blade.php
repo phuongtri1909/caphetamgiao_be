@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-body">
-                @include('admin.components.alert')
+               
 
                 <form action="{{ route('admin.news.store') }}" method="POST" class="news-form"
                     enctype="multipart/form-data" id="news-form">

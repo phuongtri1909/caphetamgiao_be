@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-body">
-                @include('admin.components.alert')
+             
 
                 <form action="{{ route('admin.news.update', $news) }}" method="POST" class="news-form"
                     enctype="multipart/form-data" id="news-form">

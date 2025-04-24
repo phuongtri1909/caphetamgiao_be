@@ -1673,3 +1673,91 @@ body {
     color: #333;
 }
 /* News styles - End */
+
+/* Franchise Styles */
+.franchise-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+.franchise-badge i {
+    margin-right: 5px;
+}
+
+.franchise-badge.slug {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.franchise-badge.code {
+    background-color: #f3e5f5;
+    color: #6a1b9a;
+}
+
+.franchise-badge.created {
+    background-color: #fff8e1;
+    color: #ff8f00;
+}
+
+.code-badge {
+    background-color: #f3e5f5;
+    color: #6a1b9a;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 500;
+}
+
+.details-container {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.detail-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.remove-detail-btn {
+    border-radius: 4px;
+}
+
+.form-hint {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.form-hint i {
+    margin-right: 4px;
+    color: #1976d2;
+}
+
+/* Style cho CKEditor đặc điểm */
+.cke_chrome.cke_detail {
+    border-color: #ddd;
+    box-shadow: none;
+}
+
+.detail-item .cke_top {
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    padding: 4px;
+}
+
+.detail-item .cke_contents {
+    min-height: 60px;
+}

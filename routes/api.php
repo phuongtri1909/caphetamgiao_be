@@ -41,6 +41,11 @@ Route::group(['middleware' => CheckApiSecretKey::class], function () {
         Route::get('/{slug}', [NewsController::class, 'show']);
     });
 
+    Route::prefix('franchises')->name('franchises.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Api\FranchiseController::class, 'index'])->name('index');
+        Route::get('/{slug}', [App\Http\Controllers\Api\FranchiseController::class, 'show'])->name('show');
+    });
+
     Route::get('/ping', function () {
         return response()->json(['message' => 'pong']);
     });
