@@ -3,11 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckApiSecretKey;
+use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\ShippingController;
+use App\Http\Controllers\Api\FranchiseController;
 use App\Http\Controllers\Api\ProvincesController;
 
 Route::group(['middleware' => CheckApiSecretKey::class], function () {
@@ -42,9 +43,11 @@ Route::group(['middleware' => CheckApiSecretKey::class], function () {
     });
 
     Route::prefix('franchises')->name('franchises.')->group(function () {
-        Route::get('/', [App\Http\Controllers\Api\FranchiseController::class, 'index'])->name('index');
-        Route::get('/{slug}', [App\Http\Controllers\Api\FranchiseController::class, 'show'])->name('show');
+        Route::get('/', [FranchiseController::class, 'index'])->name('index');
+        Route::get('/{slug}', [FranchiseController::class, 'show'])->name('show');
     });
+
+    Route::post('franchises-contact', [FranchiseController::class, 'FranchiseContact'])->name('franchises.contact');
 
     Route::get('/ping', function () {
         return response()->json(['message' => 'pong']);

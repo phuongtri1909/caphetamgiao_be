@@ -57,11 +57,26 @@ class FranchiseController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'name_package' => 'required|string|max:255',
-            'code' => 'nullable|string|max:50|unique:franchises',
+            'code' => 'nullable|string|max:255|unique:franchises',
             'sort_order' => 'nullable|integer|min:0',
-            'description' => 'required',
+            'description' => 'required|max:500000',
             'detail_items' => 'nullable|array',
             'detail_items.*' => 'required|string',
+        ],
+        [
+            'name.required' => 'Tên gói nhượng quyền là bắt buộc.',
+            'name.max' => 'Tên gói nhượng quyền không được vượt quá :max ký tự.',
+            'name_package.required' => 'Tên gói là bắt buộc.',
+            'name_package.max' => 'Tên gói không được vượt quá :max ký tự.',
+            'code.unique' => 'Mã gói đã tồn tại.',
+            'code.max' => 'Mã gói không được vượt quá :max ký tự.',
+            'sort_order.integer' => 'Thứ tự phải là một số nguyên.',
+            'sort_order.min' => 'Thứ tự không được nhỏ hơn 0.',
+            'description.required' => 'Mô tả là bắt buộc.',
+            'description.max' => 'Mô tả không được vượt quá :max ký tự.',
+            'detail_items.array' => 'Chi tiết gói phải là một mảng.',
+            'detail_items.*.required' => 'Chi tiết gói không được để trống.',
+            'detail_items.*.string' => 'Chi tiết gói phải là một chuỗi.',
         ]);
 
         // Xử lý chi tiết gói - lưu dạng mảng đơn giản
@@ -134,9 +149,24 @@ class FranchiseController extends Controller
             'name_package' => 'required|string|max:255',
             'code' => 'nullable|string|max:50|unique:franchises,code,' . $franchise->id,
             'sort_order' => 'nullable|integer|min:0',
-            'description' => 'required',
+            'description' => 'required|max:500000',
             'detail_items' => 'nullable|array',
             'detail_items.*' => 'required|string',
+        ],
+        [
+            'name.required' => 'Tên gói nhượng quyền là bắt buộc.',
+            'name.max' => 'Tên gói nhượng quyền không được vượt quá :max ký tự.',
+            'name_package.required' => 'Tên gói là bắt buộc.',
+            'name_package.max' => 'Tên gói không được vượt quá :max ký tự.',
+            'code.unique' => 'Mã gói đã tồn tại.',
+            'code.max' => 'Mã gói không được vượt quá :max ký tự.',
+            'sort_order.integer' => 'Thứ tự phải là một số nguyên.',
+            'sort_order.min' => 'Thứ tự không được nhỏ hơn 0.',
+            'description.required' => 'Mô tả là bắt buộc.',
+            'description.max' => 'Mô tả không được vượt quá :max ký tự.',
+            'detail_items.array' => 'Chi tiết gói phải là một mảng.',
+            'detail_items.*.required' => 'Chi tiết gói không được để trống.',
+            'detail_items.*.string' => 'Chi tiết gói phải là một chuỗi.',
         ]);
 
         // Xử lý chi tiết gói - lưu dạng mảng đơn giản

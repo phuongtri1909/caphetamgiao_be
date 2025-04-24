@@ -45,6 +45,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Route::currentRouteNamed('admin.franchise-contacts.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.franchise-contacts.index') }}">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                        <span>liên hệ nhượng quyền</span>
+                    </a>
+                </li>
+
 
                 <li class="{{ Route::currentRouteNamed('admin.reviews.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.reviews.index') }}">

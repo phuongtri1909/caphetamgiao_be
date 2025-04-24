@@ -1,6 +1,7 @@
 <?php
 
 
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FranchiseController;
+use App\Http\Controllers\FranchiseContactController;
 
 
 Route::get('/clear-cache', function () {
@@ -44,6 +46,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('/upload-image', [NewsController::class, 'uploadImage'])->name('news.upload.image');
 
         Route::resource('franchise', FranchiseController::class)->except(['show']);
+
+        Route::get('/franchise-contacts', [FranchiseContactController::class, 'index'])->name('franchise-contacts.index');
+        Route::get('/franchise-contacts/{franchiseContact}', [FranchiseContactController::class, 'show'])->name('franchise-contacts.show');
+        Route::delete('/franchise-contacts/{franchiseContact}', [FranchiseContactController::class, 'destroy'])->name('franchise-contacts.destroy');
+        Route::patch('/franchise-contacts/{franchiseContact}/status', [FranchiseContactController::class, 'updateStatus'])->name('franchise-contacts.update-status');
     });
 
     Route::group(['middleware' => 'guest'], function () {

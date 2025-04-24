@@ -1761,3 +1761,305 @@ body {
 .detail-item .cke_contents {
     min-height: 60px;
 }
+
+/* FranchiseContact Styles - Begin */
+.contact-code {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.customer-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-name {
+    font-weight: 500;
+}
+
+.customer-email {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.franchise-package {
+    font-weight: 500;
+    color: var(--primary-color);
+    background-color: #f8f4f1;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid #e8d9cf;
+    font-size: 12px;
+}
+
+.franchise-not-exist {
+    color: #e53935;
+    font-style: italic;
+    background-color: #ffebee;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.contact-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.contact-card-title h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.contact-card-title h5 i {
+    margin-right: 8px;
+    color: #4e73df;
+}
+
+.contact-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-date {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.contact-date i {
+    margin-right: 4px;
+}
+
+.status-pending {
+    background-color: #fff8ec;
+    color: #ff9800;
+    border: 1px solid #ffe0b2;
+}
+
+.status-processing,
+.status-contacted {
+    background-color: #e8f5e9;
+    color: #00897b;
+    border: 1px solid #b2dfdb;
+}
+
+.status-completed {
+    background-color: #e3fcef;
+    color: #00875a;
+    border: 1px solid #b2dfdb;
+}
+
+.status-canceled,
+.status-cancelled {
+    background-color: #fef0f0;
+    color: #e53935;
+    border: 1px solid #ffcdd2;
+}
+
+.info-section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.section-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.info-grid {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.info-item {
+    display: flex;
+    font-size: 0.9rem;
+}
+
+.info-label {
+    flex: 0 0 130px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.info-value {
+    flex: 1;
+    color: #333;
+}
+
+.info-value a {
+    color: #4e73df;
+    text-decoration: none;
+}
+
+.info-value a:hover {
+    text-decoration: underline;
+}
+
+.franchise-code {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-left: 5px;
+}
+
+.note-content {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 1rem;
+    min-height: 100px;
+    white-space: pre-line;
+}
+
+.status-update-section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-top: 1rem;
+    border-top: 1px solid #eaeaea;
+}
+
+.status-update-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-select {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+.btn-update {
+    background-color: #4e73df;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-update:hover {
+    background-color: #2e59d9;
+}
+
+.actions-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.back-btn {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.back-btn i {
+    margin-right: 5px;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+    color: #fff;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.delete-btn i {
+    margin-right: 5px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.action-icon.view-icon {
+    background-color: var(--primary-color);
+}
+
+.action-icon.view-icon:hover {
+    background-color: var(--primary-hover);
+}
+
+.status-pending {
+    background-color: #fff8ec;
+    color: #ff9800;
+    border: 1px solid #ffe0b2;
+}
+
+.status-contacted {
+    background-color: #e8f5e9;
+    color: #00897b;
+    border: 1px solid #b2dfdb;
+}
+
+.status-cancelled {
+    background-color: #fef0f0;
+    color: #e53935;
+    border: 1px solid #ffcdd2;
+}
+
+
+
+@media (max-width: 768px) {
+    .status-update-form {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .actions-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .back-btn, .delete-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .info-item {
+        flex-direction: column;
+    }
+    
+    .info-label {
+        margin-bottom: 0.3rem;
+    }
+}
+/* FranchiseContact Styles - End */
