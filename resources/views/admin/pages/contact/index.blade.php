@@ -69,7 +69,7 @@
             </div>
 
             <div class="card-content">
-                @include('admin.components.alert')
+                
 
                 @if (request('contact_id') || request('customer') || request('status') || request('date_from') || request('date_to'))
                     <div class="active-filters">
