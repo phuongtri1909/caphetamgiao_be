@@ -29,6 +29,10 @@ class ContactController extends Controller
 
         $contact = Contact::create($request->all());
 
+        $receiveMails = env('MAIL_RECEIVE_CONTACT');
+        $receiveMails = explode(',', $receiveMails);
+
+
         return response()->json([
             'success' => true,
             'message' => 'Đã gửi thông tin liên hệ thành công',

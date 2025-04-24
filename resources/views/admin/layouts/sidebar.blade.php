@@ -59,6 +59,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Route::currentRouteNamed('admin.socials.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.socials.index') }}">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>Socials</span>
+                    </a>
+                </li>
+
 
                 <li class="{{ Route::currentRouteNamed('admin.reviews.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.reviews.index') }}">

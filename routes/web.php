@@ -8,9 +8,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\FranchiseContactController;
 
@@ -58,6 +59,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
         Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
         Route::patch('/contacts/{contact}/status', [ContactController::class, 'updateStatus'])->name('contacts.update-status');
+
+        Route::resource('socials', SocialController::class)->except(['show']);
     });
 
     Route::group(['middleware' => 'guest'], function () {
