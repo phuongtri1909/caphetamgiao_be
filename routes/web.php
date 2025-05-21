@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\ContactController;
@@ -45,6 +46,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.update-status');
 
         Route::resource('news', NewsController::class)->except(['show']);
+
+        Route::resource('banners', BannerController::class)->except(['show']);
 
         Route::post('/upload-image', [NewsController::class, 'uploadImage'])->name('news.upload.image');
 

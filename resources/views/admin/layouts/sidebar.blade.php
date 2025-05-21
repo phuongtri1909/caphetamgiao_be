@@ -38,6 +38,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Route::currentRouteNamed('admin.banners.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.banners.index') }}">
+                        <i class="fas fa-images"></i>
+                        <span>Banner</span>
+                    </a>
+                </li>
+
                 <li class="{{ Route::currentRouteNamed('admin.franchise.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.franchise.index') }}">
                         <i class="fa-solid fa-box-open"></i>

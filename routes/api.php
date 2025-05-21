@@ -6,6 +6,7 @@ use App\Http\Middleware\CheckApiSecretKey;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\Api\SocialController;
+use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
@@ -27,6 +28,12 @@ Route::group(['middleware' => CheckApiSecretKey::class], function () {
         Route::get('/search', [ProductController::class, 'search']);
         Route::get('/{slug}', [ProductController::class, 'show']);
         Route::get('/{slug}/reviews', [ProductController::class, 'reviews']);
+    });
+
+    // Routes cho Banners
+    Route::prefix('banners')->group(function () {
+        Route::get('/', [BannerController::class, 'index']);
+        Route::get('/active', [BannerController::class, 'active']);
     });
 
     Route::post('shipping/calculate', [ShippingController::class, 'calculate']);
